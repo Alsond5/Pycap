@@ -1,4 +1,4 @@
-# TCP Packet Sniffer CLI Tool
+# TCP Packet Sniffer CLI Tool (Pycap)
 
 This CLI tool is used to listen to network traffic and capture packets going to or coming from a specified port. It is developed in Python and supports various network protocols.
 
@@ -12,7 +12,7 @@ This CLI tool is used to listen to network traffic and capture packets going to 
 1. Clone the repository to your local machine:
 
     ```
-    git clone <repository_link>
+    git clone https://github.com/Alsond5/Pycap.git
     ```
 
 2. Navigate to the project's root directory:
@@ -21,18 +21,12 @@ This CLI tool is used to listen to network traffic and capture packets going to 
     cd packet-sniffer-cli
     ```
 
-3. Install the required libraries:
-
-    ```
-    pip install -r requirements.txt
-    ```
-
 ## Usage
 
 1. To start the CLI tool, run the following command:
 
     ```
-    python sniffer.py
+    python app.py
     ```
 
 2. Once the tool is started, it will begin listening to network traffic and capture packets going to or coming from the specified port.
@@ -44,7 +38,7 @@ This CLI tool is used to listen to network traffic and capture packets going to 
 Below is an example of using the CLI tool to listen on port 80:
 
 ```
-python sniffer.py
+python app.py
 ```
 
 This command will start listening on port 80 and be ready to capture packets.
