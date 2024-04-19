@@ -3,10 +3,23 @@ import socket
 from utils import utils
 
 from typing import Callable
-from sniffer_types import Ethernet, Ip, Tcp
+from sniffer.sniffer_types import Ethernet, Ip, Tcp
 
-class Sniffer:
+class Process:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.running = False
+
+    def start(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+    def stop(self):
+        raise NotImplementedError("Subclass must implement abstract method")
+
+class Sniffer(Process):
     def __init__(self, port: int, callback: Callable[[Ethernet, Ip, Tcp, bytes], None]) -> None:
+        super().__init__("net.sniffer")
+
         self.port = port
         self.callback = callback
         self.socket: socket.socket | None = None
@@ -80,12 +93,16 @@ class Sniffer:
 
     def start(self):
         self.socket = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
+        self.running = True
 
-        running = True
-        
+        counter = 0
+
         try:
-            while running:
+            while self.running:
                 packet, adr = self.socket.recvfrom(65535)
+                print(counter)
+                
+                counter += 1
 
                 self.process_message(packet)
         except KeyboardInterrupt:
@@ -93,7 +110,15 @@ class Sniffer:
 
             print("Sniffer intercepted!")
         finally:
+            if self.socket:
+                self.socket.close()
+
+    def stop(self):
+        self.running = False
+        
+        if self.socket:
             self.socket.close()
+            self.socket = None
 
     def __del__(self):
         try:
