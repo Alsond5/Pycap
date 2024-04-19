@@ -12,7 +12,7 @@ This CLI tool is used to listen to network traffic and capture packets going to 
 1. Clone the repository to your local machine:
 
     ```
-    git clone <repository_link>
+    git clone https://github.com/Alsond5/Pycap.git
     ```
 
 2. Navigate to the project's root directory:
@@ -32,7 +32,7 @@ This CLI tool is used to listen to network traffic and capture packets going to 
 1. To start the CLI tool, run the following command:
 
     ```
-    python sniffer.py
+    python pycap.py
     ```
 
 2. Once the tool is started, it will begin listening to network traffic and capture packets going to or coming from the specified port.
@@ -44,7 +44,7 @@ This CLI tool is used to listen to network traffic and capture packets going to 
 Below is an example of using the CLI tool to listen on port 80:
 
 ```
-python sniffer.py
+python pycap.py
 ```
 
 This command will start listening on port 80 and be ready to capture packets.
